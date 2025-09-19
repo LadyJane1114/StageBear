@@ -1,8 +1,27 @@
-﻿@{
+﻿@model List<StageBear.Models.Event>
+
+@{
     ViewData["Title"] = "Home Page";
 }
-
 <div class="text-center">
     <h1 class="display-4">Welcome to StageBear</h1>
     <p>For all your event planning needs.</p>
 </div>
+
+
+
+<h1>What's on stage!</h1>
+@foreach (var photo in Model) // I think "event" might be a keyword because if I used "event" in place of "photo" nothing worked. "photo" is not the word I'll be using here indefinitely, I just needed something to put here to make sure the code was running as intended.
+{
+   <div>
+        <h3>@photo.Title</h3>
+
+        <p>
+            Description: @photo.Description<br />
+            Scheduled: @photo.Scheduled<br />
+            Owner: @photo.Owner<br />
+            Entry Recorded: @photo.DateRecorded<br />
+        </p>
+
+    </div>
+}
