@@ -7,6 +7,6 @@
         public string CategoryTitle { get; set; } = string.Empty;
 
         //Navigation property
-        public List<Category> Categories { get; set; }
+        public List<Category>? Categories { get; set; }
     }
 }
