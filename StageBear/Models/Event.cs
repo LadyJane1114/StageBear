@@ -4,7 +4,10 @@ namespace StageBear.Models
 {
     public class Event //I'd like to add images at some point.
     {
+        //primary key
         public int EventID { get; set; }
+
+
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty ;
         public DateTime Scheduled { get; set; }
@@ -12,7 +15,10 @@ namespace StageBear.Models
         public string Owner {  get; set; } = string.Empty;
         public DateTime DateRecorded { get; set; }
 
+
+        //Foreign Key
         public int CategoryID { get; set; }
+        // Navigation property
         public Category? Category  { get; set; }
     }
 }
