@@ -1,4 +1,4 @@
-﻿@model List<StageBear.Models.Event>
+﻿@model List<StageBear.Models.Show>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -11,17 +11,26 @@
 
 
 <h1>What's on stage!</h1>
-@foreach (var photo in Model) // I think "event" might be a keyword because if I used "event" in place of "photo" nothing worked. "photo" is not the word I'll be using here indefinitely, I just needed something to put here to make sure the code was running as intended.
-{
-   <div>
-        <h3>@photo.Title</h3>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tr>
+            <th>Thumbnail</th>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Scheduled</th>
+        </tr>
+        @foreach (var show in Model)
+        {
+            <tr>
+                <td>
+                    <img src="/assets/@show.Image" alt="@show.Title" />
+                </td>
+                <td>@show.ShowID</td>
+                <td>@show.Title</td>
+                <td>@show.Scheduled.ToString("dd MMM, yyyy: HH:mm")</td>
+                <td><a asp-controller="Home" asp-action="Details" asp-route-id="@show.ShowID">Find out more!</a></td>
+            </tr>
+        }
+    </table>
+</div>
 
-        <p>
-            Description: @photo.Description<br />
-            Scheduled: @photo.Scheduled<br />
-            Owner: @photo.Owner<br />
-            Entry Recorded: @photo.DateRecorded<br />
-        </p>
-
-    </div>
-}

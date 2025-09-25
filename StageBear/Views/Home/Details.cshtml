@@ -1,0 +1,76 @@
+﻿@model StageBear.Models.Show
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<h1>Details</h1>
+
+<div class="w-100">
+    <img src="/assets/@Model.Image" class="img-fluid" />
+</div>
+
+<table class="table w-50">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowID)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.ShowID)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Title)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Description)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Scheduled)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Scheduled)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Location)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Owner)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Owner)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRecorded)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.DateRecorded)
+        </td>
+    </tr>
+
+</table>
+
+<p>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Go Home</a>
+</p>

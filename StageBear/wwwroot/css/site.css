@@ -17,10 +17,13 @@ html {
   min-height: 100%;
 }
 
+.navbar {
+    background-color: #6d84d0;
+}
+
 body {
     margin-bottom: 60px;
-    background-color: #301934;
-    color:aliceblue;
+    background-color: #c3c9e9;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
