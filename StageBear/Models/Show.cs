@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StageBear.Models
 {
-    public class Show //I'd like to add images at some point.
+    public class Show
     {
         [Display(Name = "Show ID")]
         //primary key

@@ -9,6 +9,9 @@
 <div>
     <h4>Show</h4>
     <hr />
+    <div class="w-100">
+        <img src="/assets/@Model.Image" class="w-20 img-fluid" />
+    </div>
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
@@ -26,19 +29,13 @@
             @Html.DisplayNameFor(model => model.Scheduled)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Scheduled)
+            @Model.Scheduled.ToString("dd MMM, yyyy : hh:mm tt")
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DateRecorded)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateRecorded)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
+            @Model.DateRecorded.ToString("dd MMM, yyyy : hh:mm tt")
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Category)

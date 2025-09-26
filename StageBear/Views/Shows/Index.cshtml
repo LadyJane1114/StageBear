@@ -13,13 +13,13 @@
     <thead>
         <tr>
             <th>
+                Thumbnail
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Scheduled)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Category)
@@ -34,22 +34,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                <img src="/assets/@item.Image" class="w-25 img-fluid" />
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Scheduled)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
+                @item.Scheduled.ToString("dd MMM, yyyy : hh:mm tt")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category.CategoryTitle)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Venue.VenueName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner.FullName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ShowID">Edit</a> |
