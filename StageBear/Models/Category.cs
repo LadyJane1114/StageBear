@@ -8,7 +8,7 @@ namespace StageBear.Models
         //primary key
         public int CategoryId { get; set; }
 
-        [Display(Name = "Category Title")]
+        [Display(Name = "Category")]
         public string CategoryTitle { get; set; } = string.Empty;
 
         //Navigation property

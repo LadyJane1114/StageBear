@@ -50,9 +50,9 @@ namespace StageBear.Controllers
         // GET: Shows/Create
         public IActionResult Create()
         {
-            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryId");
-            ViewData["OwnerID"] = new SelectList(_context.Set<Owner>(), "OwnerId", "OwnerId");
-            ViewData["VenueID"] = new SelectList(_context.Set<Venue>(), "VenueId", "VenueId");
+            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryTitle");
+            ViewData["OwnerID"] = new SelectList(_context.Set<Owner>(), "OwnerId", "FullName");
+            ViewData["VenueID"] = new SelectList(_context.Set<Venue>(), "VenueId", "VenueName");
             return View();
         }
 
