@@ -54,7 +54,7 @@ namespace StageBear.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OwnerId,FName,LName,Organization,Phone,Email,OwnerNotes")] Owner owner)
+        public async Task<IActionResult> Create([Bind("OwnerId,FName,LName,Pronouns,Organization,Phone,Email,OwnerNotes")] Owner owner)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace StageBear.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OwnerId,FName,LName,Organization,Phone,Email,OwnerNotes")] Owner owner)
+        public async Task<IActionResult> Edit(int id, [Bind("OwnerId,FName,LName,Pronouns,Organization,Phone,Email,OwnerNotes")] Owner owner)
         {
             if (id != owner.OwnerId)
             {

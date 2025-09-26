@@ -13,6 +13,8 @@ namespace StageBear.Models
         [Display(Name = "Last Name")]
         public string LName { get; set; } = string.Empty ;
 
+        public string Pronouns { get; set; } = string.Empty ;
+
         [Display(Name = "Name")]
         public string FullName => $"{FName} {LName}";
 
