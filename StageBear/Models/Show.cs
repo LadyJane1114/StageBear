@@ -11,15 +11,23 @@ namespace StageBear.Models
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty ;
         public DateTime Scheduled { get; set; }
-        public string Location { get; set; } = string.Empty;
-        public string Owner {  get; set; } = string.Empty;
         public DateTime DateRecorded { get; set; }
         public string Image { get; set; } = string.Empty;
 
 
-        //Foreign Key
+        //Foreign Key for Category
         public int CategoryID { get; set; }
         // Navigation property
         public Category? Category  { get; set; }
+
+        // Foreign key for Venue
+        public int VenueID { get; set; }
+        //Navigation property
+        public Venue? Venue { get; set; }
+
+        //Foreign key for Owner
+        public int OwnerID { get; set; }
+        //Navigation property
+        public Owner? Owner { get; set; }
     }
 }

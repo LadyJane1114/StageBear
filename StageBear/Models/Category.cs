@@ -1,6 +1,6 @@
 ﻿namespace StageBear.Models
 {
-    public class Category //Need to figure out category tags.
+    public class Category 
     {
         //primary key
         public int CategoryId { get; set; }

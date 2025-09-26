@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using StageBear.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<StageBearContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("StageBearContext") ?? throw new InvalidOperationException("Connection string 'StageBearContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
