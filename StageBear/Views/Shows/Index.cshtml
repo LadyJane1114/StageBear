@@ -16,13 +16,7 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Scheduled)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateRecorded)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Image)
@@ -32,9 +26,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Venue)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Owner)
             </th>
             <th></th>
         </tr>
@@ -46,25 +37,19 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Scheduled)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateRecorded)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Image)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryId)
+                @Html.DisplayFor(modelItem => item.Category.CategoryTitle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Venue.VenueId)
+                @Html.DisplayFor(modelItem => item.Venue.VenueName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Owner.OwnerId)
+                @Html.DisplayFor(modelItem => item.Owner.FullName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ShowID">Edit</a> |
