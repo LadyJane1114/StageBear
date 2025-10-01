@@ -61,8 +61,11 @@ namespace StageBear.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ShowID,Title,Description,Scheduled,DateRecorded,Image,CategoryID,VenueID,OwnerID")] Show show)
+        public async Task<IActionResult> Create([Bind("ShowID,Title,Description,Scheduled,Image,CategoryID,VenueID,OwnerID")] Show show)
         {
+            // Initialize values
+            show.DateRecorded = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 _context.Add(show);
