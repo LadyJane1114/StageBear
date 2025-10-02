@@ -20,9 +20,19 @@ namespace StageBear.Controllers
         }
 
         // GET: Categories
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var stageBearContext = _context.Category.OrderBy(s => s.CategoryTitle);
+            ViewData["CurrentFilter"] = searchString;
+
+            var stageBearContext = _context.Category
+                .OrderBy(s => s.CategoryTitle)
+                .AsQueryable();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                stageBearContext = stageBearContext.Where(s => s.CategoryTitle.ToUpper().Contains(searchString));
+            }
+
             return View(await stageBearContext.ToListAsync());
         }
 

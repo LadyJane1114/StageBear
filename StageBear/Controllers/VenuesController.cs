@@ -20,9 +20,23 @@ namespace StageBear.Controllers
         }
 
         // GET: Venues
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var stageBearContext = _context.Venue.OrderBy(s=>s.Region).ThenBy(s => s.City).ThenBy(s => s.VenueName);
+            ViewData["CurrentFilter"] = searchString;
+
+
+            var stageBearContext = _context.Venue
+                .OrderBy(s=>s.Region)
+                .ThenBy(s => s.City)
+                .ThenBy(s => s.VenueName)
+                .AsQueryable();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                stageBearContext = stageBearContext
+                    .Where(s => s.VenueName.ToUpper().Contains(searchString) || s.City.ToUpper().Contains(searchString));
+            }
+
             return View(await stageBearContext.ToListAsync());
         }
 

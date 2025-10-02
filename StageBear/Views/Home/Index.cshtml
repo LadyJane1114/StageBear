@@ -13,13 +13,20 @@
     <a asp-controller="Shows" asp-action="Create">Add New Show</a>
 </p>
 
-<form asp-action="Index" method="get">
-    <div class="form-actions no-color">
-        <p>
-            <label>Search Shows by Name: <input type="text" id="searchbox" name="searchString" value="@(ViewData["CurrentFilter"] as string)" /> </label>
-            <input type="submit" value="Search" class="btn btn-default" /> |
+<form>
+    <div class="row g-2 align-items-center">
+        <div class="col-auto m-2">
+            <label for="searchBox" class="col-form-label">Search Shows by Name: </label>
+        </div>
+        <div class="col-auto m-2">
+            <input type="text" id="searchbox" name="searchString" class="form-control" value="@(ViewData["CurrentFilter"] as string)" />
+        </div>
+        <div class="col-auto m-2">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
+        <div class="col-auto m-2">
             <a asp-action="Index">Back to Full List</a>
-        </p>
+        </div>
     </div>
 </form>
 

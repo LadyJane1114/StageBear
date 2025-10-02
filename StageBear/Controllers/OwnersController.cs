@@ -20,9 +20,20 @@ namespace StageBear.Controllers
         }
 
         // GET: Owners
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var stageBearContext = _context.Owner.OrderBy(s => s.LName);
+            ViewData["CurrentFilter"] = searchString;
+
+            var stageBearContext = _context.Owner
+                .OrderBy(s => s.LName)
+                .AsQueryable();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                stageBearContext = stageBearContext
+                    .Where(s => s.FName.ToUpper().Contains(searchString) || s.LName.ToUpper().Contains(searchString));
+            }
+
             return View(await stageBearContext.ToListAsync());
         }
 
