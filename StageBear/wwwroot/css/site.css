@@ -1,3 +1,32 @@
+/*.love-ya-like-a-sister-regular {
+    font-family: "Love Ya Like A Sister", cursive;
+    font-weight: 400;
+    font-style: normal;
+}*/
+/*.poiret-one-regular {
+    font-family: "Poiret One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}*/
+/*.figtree-<uniquifier > {
+    font-family: "Figtree", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+}*/
+/*.unkempt-regular {
+    font-family: "Unkempt", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.unkempt-bold {
+    font-family: "Unkempt", cursive;
+    font-weight: 700;
+    font-style: normal;
+}*/
+
+
 html {
   font-size: 14px;
 }
@@ -20,10 +49,20 @@ html {
 .navbar {
     background-color: #6d84d0;
 }
+.navbar-brand {
+    font-family: "Love Ya Like A Sister", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
 
 body {
     margin-bottom: 60px;
     background-color: #c3c9e9;
+}
+h1 {
+    font-family: "Love Ya Like A Sister", cursive;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
