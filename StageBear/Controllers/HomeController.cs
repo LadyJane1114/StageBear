@@ -18,11 +18,21 @@ namespace StageBear.Controllers
       
 
         // GET: Shows
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            ViewData["CurrentFilter"] = searchString;
 
-            var stageBearContext = _context.Show.Include(s => s.Category).Include(s => s.Owner).Include(s => s.Venue).OrderBy(s => s.Scheduled);
+            var stageBearContext = _context.Show
+                .Include(s => s.Category)
+                .Include(s => s.Owner)
+                .Include(s => s.Venue)
+                .OrderBy(s => s.Scheduled)
+                .AsQueryable();
 
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                stageBearContext = stageBearContext.Where(s => s.Title.ToUpper().Contains(searchString));
+            }
 
             return View(await stageBearContext.ToListAsync());
         }
