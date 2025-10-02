@@ -22,25 +22,8 @@ namespace StageBear.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Category.ToListAsync());
-        }
-
-        // GET: Categories/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return View(category);
+            var stageBearContext = _context.Category.OrderBy(s => s.CategoryTitle);
+            return View(await stageBearContext.ToListAsync());
         }
 
         // GET: Categories/Create

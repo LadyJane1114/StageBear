@@ -28,7 +28,7 @@ namespace StageBear.Models
                                         $"{City}, {Region} " +
                                         $"{PostCode}";
         [Display(Name = "Notes")]
-        public string VenueNotes {  get; set; } = string.Empty;
+        public string? VenueNotes {  get; set; }
 
         //Navigation property
         public List<Venue>? Venues { get; set; }

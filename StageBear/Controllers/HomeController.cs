@@ -20,7 +20,10 @@ namespace StageBear.Controllers
         // GET: Shows
         public async Task<IActionResult> Index()
         {
-            var stageBearContext = _context.Show.Include(s => s.Category).Include(s => s.Owner).Include(s => s.Venue);
+
+            var stageBearContext = _context.Show.Include(s => s.Category).Include(s => s.Owner).Include(s => s.Venue).OrderBy(s => s.Scheduled);
+
+
             return View(await stageBearContext.ToListAsync());
         }
 

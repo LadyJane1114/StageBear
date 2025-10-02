@@ -22,7 +22,8 @@ namespace StageBear.Controllers
         // GET: Venues
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Venue.ToListAsync());
+            var stageBearContext = _context.Venue.OrderBy(s=>s.Region).ThenBy(s => s.City).ThenBy(s => s.VenueName);
+            return View(await stageBearContext.ToListAsync());
         }
 
         // GET: Venues/Details/5

@@ -22,7 +22,8 @@ namespace StageBear.Controllers
         // GET: Owners
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Owner.ToListAsync());
+            var stageBearContext = _context.Owner.OrderBy(s => s.LName);
+            return View(await stageBearContext.ToListAsync());
         }
 
         // GET: Owners/Details/5

@@ -19,13 +19,13 @@ namespace StageBear.Models
         public string FullName => $"{FName} {LName}";
 
 
-        public string Organization { get; set; } = string.Empty;
+        public string? Organization { get; set; }
 
         public string Phone { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
 
         [Display(Name = "Notes")]
-        public string OwnerNotes {  get; set; } = string.Empty;
+        public string? OwnerNotes {  get; set; }
 
         //Navigation property
         public List<Owner>? Owners { get; set; }
