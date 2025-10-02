@@ -35,6 +35,7 @@ namespace StageBear.Controllers
             }
 
             return View(await stageBearContext.ToListAsync());
+
         }
 
         // GET: Shows/Details/5
