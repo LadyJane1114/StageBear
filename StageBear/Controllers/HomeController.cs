@@ -1,28 +1,50 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using StageBear.Data;
 using StageBear.Models;
+using System.Diagnostics;
 
 namespace StageBear.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly StageBearContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(StageBearContext context)
         {
-            _logger = logger;
+            _context = context;
+        }
+      
 
+        // GET: Shows
+        public async Task<IActionResult> Index()
+        {
+            var stageBearContext = _context.Show.Include(s => s.Category).Include(s => s.Owner).Include(s => s.Venue);
+            return View(await stageBearContext.ToListAsync());
         }
 
-        public IActionResult Index()
+        // GET: Shows/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var show = await _context.Show
+                .Include(s => s.Category)
+                .Include(s => s.Owner)
+                .Include(s => s.Venue)
+                .FirstOrDefaultAsync(m => m.ShowID == id);
+            if (show == null)
+            {
+                return NotFound();
+            }
+
+            return View(show);
         }
 
-        public IActionResult Details(int id)
-        {
-                return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

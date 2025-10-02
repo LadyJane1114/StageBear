@@ -19,33 +19,6 @@ namespace StageBear.Controllers
             _context = context;
         }
 
-        // GET: Shows
-        public async Task<IActionResult> Index()
-        {
-            var stageBearContext = _context.Show.Include(s => s.Category).Include(s => s.Owner).Include(s => s.Venue);
-            return View(await stageBearContext.ToListAsync());
-        }
-
-        // GET: Shows/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var show = await _context.Show
-                .Include(s => s.Category)
-                .Include(s => s.Owner)
-                .Include(s => s.Venue)
-                .FirstOrDefaultAsync(m => m.ShowID == id);
-            if (show == null)
-            {
-                return NotFound();
-            }
-
-            return View(show);
-        }
 
         // GET: Shows/Create
         public IActionResult Create()
@@ -70,7 +43,7 @@ namespace StageBear.Controllers
             {
                 _context.Add(show);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index","Home");
             }
             ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryTitle", show.CategoryID);
             ViewData["OwnerID"] = new SelectList(_context.Set<Owner>(), "OwnerId", "FullName", show.OwnerID);
@@ -127,7 +100,7 @@ namespace StageBear.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryTitle", show.CategoryID);
             ViewData["OwnerID"] = new SelectList(_context.Set<Owner>(), "OwnerId", "FullName", show.OwnerID);
@@ -168,7 +141,7 @@ namespace StageBear.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Home");
         }
 
         private bool ShowExists(int id)
