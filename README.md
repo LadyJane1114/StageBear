@@ -1,6 +1,7 @@
 <h1> Welcome to StageBear</h1>
 StageBear is a ticket sales website where users can buy tickets to all their favorite shows. Whether you're looking for a night of musical theatre, stand=up comedy, or a convention of likeminded nerds, StageBear has you covered.
-<img width="1900" height="865" alt="image" src="https://github.com/user-attachments/assets/28e0077f-15a1-4c99-a9b6-ad70f145ce2f" />
+<img width="1900" height="867" alt="image" src="https://github.com/user-attachments/assets/58e767ea-82c8-4fa7-910d-e6c4d2b24449" />
+
 
 
 <h2>Admin App</h2>
