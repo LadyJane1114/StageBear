@@ -34,7 +34,7 @@ namespace StageBear.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 stageBearContext = stageBearContext
-                    .Where(s => s.VenueName.ToUpper().Contains(searchString) || s.City.ToUpper().Contains(searchString));
+                    .Where(s => s.VenueName.ToUpper().Contains(searchString) || s.City.ToUpper().Contains(searchString) || s.Region.ToUpper().Contains(searchString));
             }
 
             return View(await stageBearContext.ToListAsync());

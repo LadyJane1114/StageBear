@@ -7,19 +7,19 @@
 <h1>Manage Venues</h1>
 
 <p>
-    <a asp-action="Create">Add New Venue</a>
+    <a asp-action="Create" class="btn">Add New Venue</a>
 </p>
 
 <form>
     <div class="row g-2 align-items-center">
         <div class="col-auto m-2">
-            <label for="searchBox" class="col-form-label">Search Venues by Name or City: </label>
+            <label for="searchBox" class="col-form-label">Search Venues by Name or Location: </label>
         </div>
         <div class="col-auto m-2">
             <input type="text" id="searchbox" name="searchString" class="form-control" value="@(ViewData["CurrentFilter"] as string)" />
         </div>
         <div class="col-auto m-2">
-            <input type="submit" value="Search" class="btn btn-primary" />
+            <input type="submit" value="Search" class="btn" />
         </div>
         <div class="col-auto m-2">
             <a asp-action="Index">Back to Full List</a>

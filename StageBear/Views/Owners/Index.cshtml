@@ -7,7 +7,7 @@
 <h1>Manage Owners</h1>
 
 <p>
-    <a asp-action="Create">Add New Owner</a>
+    <a asp-action="Create" class="btn">Add New Owner</a>
 </p>
 
 <form>
@@ -19,7 +19,7 @@
             <input type="text" id="searchbox" name="searchString" class="form-control" value="@(ViewData["CurrentFilter"] as string)" />
         </div>
         <div class="col-auto m-2">
-            <input type="submit" value="Search" class="btn btn-primary" />
+            <input type="submit" value="Search" class="btn" />
         </div>
         <div class="col-auto m-2">
             <a asp-action="Index">Back to Full List</a>

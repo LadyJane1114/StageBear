@@ -36,9 +36,20 @@ html {
     font-size: 16px;
   }
 }
-
+.btn{
+    background-color: #d990b6;
+    border-radius: 17px;
+    box-shadow: 1px 1px 2px #d70170;
+}
+.btn:hover{
+    background-color: #d990b6;
+    border-radius: 17px; 
+    box-shadow: 1px 1px 2px #d70170;
+}
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    background-color: #d990b6;
+    border-radius: 17px;
+    box-shadow: 0 0 0 0.1rem #d70170, 0 0 0 0.25rem #d990b6;
 }
 
 html {
@@ -47,17 +58,33 @@ html {
 }
 
 .navbar {
-    background-color: #6d84d0;
+    background-color: #6d84d0; 
+    //powder blue
 }
-.navbar-brand {
-    font-family: "Love Ya Like A Sister", cursive;
-    font-weight: 400;
-    font-style: normal;
+.navbar-brand img {
+    height: 60px;
+    width: auto;
+    padding-right: 10px;
+    // background of logo is powder purple
 }
+.nav-item {
+    padding-left: 5px;
+    padding-right:5px
+
+}
+.nav-item:hover {
+    background-color: #d990b6;
+    border-radius: 17px; 
+    box-shadow: 1px 1px 2px #d70170;
+    // powder pink background
+        //bi pink shadow
+}
+
 
 body {
     margin-bottom: 60px;
     background-color: #c3c9e9;
+    //pale blue bg color
 }
 h1 {
     font-family: "Love Ya Like A Sister", cursive;
@@ -72,4 +99,12 @@ h1 {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
+}
+
+a {
+    text-decoration: none;
+}
+
+.dateRecorded {
+    font-size:smaller;
 }

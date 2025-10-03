@@ -10,7 +10,7 @@
 
 <h3>What's on stage!</h3>
 <p>
-    <a asp-controller="Shows" asp-action="Create">Add New Show</a>
+    <a asp-controller="Shows" asp-action="Create" class="btn">Add New Show</a>
 </p>
 
 <form>
@@ -22,7 +22,7 @@
             <input type="text" id="searchbox" name="searchString" class="form-control" value="@(ViewData["CurrentFilter"] as string)" />
         </div>
         <div class="col-auto m-2">
-            <input type="submit" value="Search" class="btn btn-primary" />
+            <input type="submit" value="Search" class="btn " />
         </div>
         <div class="col-auto m-2">
             <a asp-action="Index">Back to Full List</a>

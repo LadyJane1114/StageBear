@@ -25,12 +25,6 @@
             @Model.Scheduled.ToString("dd MMM, yyyy : hh:mm tt")
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateRecorded)
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.DateRecorded.ToString("dd MMM, yyyy : hh:mm tt")
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Category)
         </dt>
         <dd class = "col-sm-10">
@@ -40,7 +34,7 @@
             @Html.DisplayNameFor(model => model.Venue)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Venue.VenueName)
+            <a asp-controller ="Venues" asp-action="Details" asp-route-id="@Model?.VenueID">@Html.DisplayFor(model => model.Venue.VenueName)</a>
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Owner)
@@ -50,7 +44,12 @@
         </dd>
     </dl>
 </div>
+
+<div>
+    <br/>
+    <p class="dateRecorded"><span style="font-weight:bold">Show Recorded:</span> @Model.DateRecorded.ToString("dd MMM, yyyy : hh:mm tt")</p>
+</div>
 <div>
     <a asp-controller="Shows" asp-action="Edit" asp-route-id="@Model?.ShowID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to Shows List</a>
 </div>
