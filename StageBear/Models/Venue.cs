@@ -23,6 +23,9 @@ namespace StageBear.Models
         [Display(Name = "Post Code")]
         public string PostCode { get; set; } = string.Empty;
 
+        [Display(Name = "Phone Number")]
+        public string Phone { get; set; } = string.Empty;
+
         [Display(Name = "Address")]
         public string FullAddress => $"{StreetAddress} " +
                                         $"{City}, {Region} " +

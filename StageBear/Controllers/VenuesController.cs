@@ -69,7 +69,7 @@ namespace StageBear.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("VenueId,VenueName,StreetAddress,City,Region,PostCode,VenueNotes")] Venue venue)
+        public async Task<IActionResult> Create([Bind("VenueId,VenueName,StreetAddress,City,Region,PostCode,Phone,VenueNotes")] Venue venue)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +101,7 @@ namespace StageBear.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("VenueId,VenueName,StreetAddress,City,Region,PostCode,VenueNotes")] Venue venue)
+        public async Task<IActionResult> Edit(int id, [Bind("VenueId,VenueName,StreetAddress,City,Region,PostCode,Phone,VenueNotes")] Venue venue)
         {
             if (id != venue.VenueId)
             {

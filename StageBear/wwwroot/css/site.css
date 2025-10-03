@@ -41,11 +41,11 @@ html {
     border-radius: 17px;
     box-shadow: 1px 1px 2px #d70170;
 }
-.btn:hover{
-    background-color: #d990b6;
-    border-radius: 17px; 
-    box-shadow: 1px 1px 2px #d70170;
-}
+    .btn:hover {
+        background-color: #e398bf;
+        border-radius: 17px;
+        box-shadow: 1px 1px 2px #d70170;
+    }
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     background-color: #d990b6;
     border-radius: 17px;
@@ -107,4 +107,10 @@ a {
 
 .dateRecorded {
     font-size:smaller;
+}
+
+.footerLink {
+    text-decoration: none;
+    color: white;
+    white-space:nowrap;
 }
