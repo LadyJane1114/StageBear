@@ -114,3 +114,12 @@ a {
     color: white;
     white-space:nowrap;
 }
+
+.thumbnail {
+    max-width: 220px;
+    max-height: 180px;
+    width: auto;
+    height:auto;
+    display: block;
+    object-fit: contain;
+}
