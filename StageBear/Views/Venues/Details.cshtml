@@ -29,8 +29,10 @@
         </dd>
     </dl>
 </div>
+<div style ="padding-bottom:10px">
+    <a asp-action="Edit" asp-route-id="@Model?.VenueId" class="btn">Edit Venue</a>
+</div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.VenueId">Edit</a> |
     <a asp-action="Index">Back to Venues List</a> |
-    <a asp-controller="Home" asp-action="Index">Back to Full Shows List</a>
+    <a asp-controller="Home" asp-action="Index">Back to Full Shows List</a> |
 </div>
