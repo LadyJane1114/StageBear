@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -34,14 +35,31 @@ namespace StageBear.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ShowID,Title,Description,Scheduled,Image,CategoryID,VenueID,OwnerID")] Show show)
+        public async Task<IActionResult> Create([Bind("ShowID,Title,Description,Scheduled,Image,CategoryID,VenueID,OwnerID,FormFile")] Show show)
         {
             // Initialize values
             show.DateRecorded = DateTime.Now;
 
             if (ModelState.IsValid)
             {
-                _context.Add(show);
+                if (show.FormFile != null)
+                {
+                    string filename = show.FormFile.FileName;
+                    show.Image = filename;
+
+                    string saveFileStream = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot","assets",filename);
+
+                    using (FileStream fileStream = new FileStream(saveFileStream, FileMode.Create))
+                    {
+                        await show.FormFile.CopyToAsync(fileStream);
+                    }
+                }
+                else
+                {
+                    show.Image = "ShakesLogo.png";
+                }
+
+                    _context.Add(show);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index","Home");
             }
@@ -75,9 +93,17 @@ namespace StageBear.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ShowID,Title,Description,Scheduled,DateRecorded,Image,CategoryID,VenueID,OwnerID")] Show show)
+        public async Task<IActionResult> Edit(int id, [Bind("ShowID,Title,Description,Scheduled,DateRecorded,Image,CategoryID,VenueID,OwnerID,FormFile")] Show show)
         {
+            
             if (id != show.ShowID)
+            {
+                return NotFound();
+            }
+            //Copilot helped me with this
+            var existingShow = await _context.Show.AsNoTracking().FirstOrDefaultAsync(s => s.ShowID == id);
+
+            if (existingShow == null)
             {
                 return NotFound();
             }
@@ -86,7 +112,23 @@ namespace StageBear.Controllers
             {
                 try
                 {
-                    _context.Update(show);
+                    if (show.FormFile != null)
+                    {
+                        string filename = show.FormFile.FileName;
+                        show.Image = filename;
+
+                        string saveFileStream = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", filename);
+
+                        using (FileStream fileStream = new FileStream(saveFileStream, FileMode.Create))
+                        {
+                            await show.FormFile.CopyToAsync(fileStream);
+                        }
+                    }else
+                    {
+                        show.Image = existingShow.Image;
+                    }
+
+                        _context.Update(show);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

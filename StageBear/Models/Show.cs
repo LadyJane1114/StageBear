@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StageBear.Models
 {
@@ -33,5 +34,9 @@ namespace StageBear.Models
         public int OwnerID { get; set; }
         //Navigation property
         public Owner? Owner { get; set; }
+
+        [NotMapped]
+        [Display(Name = "Poster")]
+        public IFormFile? FormFile { get; set; }
     }
 }

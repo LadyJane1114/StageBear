@@ -55,8 +55,15 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                <img src="/assets/@item.Image" class="w-25 img-fluid" />
-            </td>
+                    @if (!String.IsNullOrEmpty(item.Image))
+                    {
+                        <img src="/assets/@item.Image" class="img-fluid w-50" />
+                    } 
+                    @* else
+                    {
+                        <img src="~/assets/ShakesLogo.png" class="img-fluid w-50" />
+                    } *@
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
