@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -122,8 +123,10 @@ namespace StageBear.Controllers
                         using (FileStream fileStream = new FileStream(saveFileStream, FileMode.Create))
                         {
                             await show.FormFile.CopyToAsync(fileStream);
+                            
                         }
-                    }else
+                    }
+                    else
                     {
                         show.Image = existingShow.Image;
                     }
