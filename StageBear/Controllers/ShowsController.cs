@@ -196,7 +196,7 @@ namespace StageBear.Controllers
             if (!string.IsNullOrEmpty(show.Image))
             {
                 string DeleteImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", show.Image);
-                if (System.IO.File.Exists(show.Image))
+                if (System.IO.File.Exists(DeleteImagePath))
                 {
                     System.IO.File.Delete(DeleteImagePath);
                 }
