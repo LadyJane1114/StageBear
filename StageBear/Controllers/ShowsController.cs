@@ -57,7 +57,7 @@ namespace StageBear.Controllers
                 }
                 else
                 {
-                    show.Image = "ShakesLogo.png";
+                    show.Image = "ShakesPlaceholder.png";
                 }
 
                     _context.Add(show);
@@ -128,7 +128,7 @@ namespace StageBear.Controllers
                         if(!string.IsNullOrEmpty(existingShow.Image))
                         {
                             string oldImagePath = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot","assets",existingShow.Image);
-                            if (System.IO.File.Exists(oldImagePath))
+                            if (System.IO.File.Exists(oldImagePath) && existingShow.Image != "ShakesPlaceholder.png")
                             {
                                 System.IO.File.Delete(oldImagePath);
                             }
