@@ -94,9 +94,10 @@ namespace StageBear.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ShowID,Title,Description,Scheduled,DateRecorded,Image,CategoryID,VenueID,OwnerID,FormFile")] Show show)
+        public async Task<IActionResult> Edit(int id, [Bind("ShowID,Title,Description,Scheduled,Image,CategoryID,VenueID,OwnerID,FormFile")] Show show)
         {
-            
+            show.DateRecorded = DateTime.Now;
+
             if (id != show.ShowID)
             {
                 return NotFound();
@@ -123,7 +124,14 @@ namespace StageBear.Controllers
                         using (FileStream fileStream = new FileStream(saveFileStream, FileMode.Create))
                         {
                             await show.FormFile.CopyToAsync(fileStream);
-                            
+                        }
+                        if(!string.IsNullOrEmpty(existingShow.Image))
+                        {
+                            string oldImagePath = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot","assets",existingShow.Image);
+                            if (System.IO.File.Exists(oldImagePath))
+                            {
+                                System.IO.File.Delete(oldImagePath);
+                            }
                         }
                     }
                     else
@@ -147,6 +155,7 @@ namespace StageBear.Controllers
                 }
                 return RedirectToAction("Index", "Home");
             }
+
             ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryTitle", show.CategoryID);
             ViewData["OwnerID"] = new SelectList(_context.Set<Owner>(), "OwnerId", "FullName", show.OwnerID);
             ViewData["VenueID"] = new SelectList(_context.Set<Venue>(), "VenueId", "VenueName", show.VenueID);
@@ -183,6 +192,14 @@ namespace StageBear.Controllers
             if (show != null)
             {
                 _context.Show.Remove(show);
+            }
+            if (!string.IsNullOrEmpty(show.Image))
+            {
+                string DeleteImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", show.Image);
+                if (System.IO.File.Exists(show.Image))
+                {
+                    System.IO.File.Delete(DeleteImagePath);
+                }
             }
 
             await _context.SaveChangesAsync();
