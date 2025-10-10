@@ -196,7 +196,7 @@ namespace StageBear.Controllers
             if (!string.IsNullOrEmpty(show.Image))
             {
                 string DeleteImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", show.Image);
-                if (System.IO.File.Exists(DeleteImagePath))
+                if (System.IO.File.Exists(DeleteImagePath) && show.Image != "ShakesPlaceholder.png")
                 {
                     System.IO.File.Delete(DeleteImagePath);
                 }
