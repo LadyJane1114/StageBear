@@ -41,8 +41,11 @@
            
             <div class="mb-3">
                 <label asp-for="FormFile" class="form-label"></label>
-                <input asp-for="FormFile" class="form-control" />
+                <input asp-for="FormFile" class="form-control" accept="image/*" onchange="previewImage(event)"/>
                 <span asp-validation-for="FormFile" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <img id="previewThumb" src="#" class="thumbnail" alt="preview thumbnail" style="display:none; padding:10px; border: dashed 1px"/>
             </div>
 
             <div class="mb-3">
@@ -58,4 +61,21 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script>
+    function previewImage(event) {
+        const input = event.target;
+        const preview = document.getElementById('previewThumb');
+
+        if(input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 }
