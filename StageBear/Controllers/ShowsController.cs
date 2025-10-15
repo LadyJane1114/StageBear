@@ -112,34 +112,34 @@ namespace StageBear.Controllers
 
             if (ModelState.IsValid)
             {
+                if (show.FormFile != null)
+                {
+                    string filename = show.FormFile.FileName;
+                    show.Image = filename;
+
+                    string saveFileStream = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", filename);
+
+                    using (FileStream fileStream = new FileStream(saveFileStream, FileMode.Create))
+                    {
+                        await show.FormFile.CopyToAsync(fileStream);
+                    }
+                    if (!string.IsNullOrEmpty(existingShow.Image))
+                    {
+                        string oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", existingShow.Image);
+                        if (System.IO.File.Exists(oldImagePath) && existingShow.Image != "ShakesPlaceholder.png")
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+                }
+                else
+                {
+                    show.Image = existingShow.Image;
+                }
+
                 try
                 {
-                    if (show.FormFile != null)
-                    {
-                        string filename = show.FormFile.FileName;
-                        show.Image = filename;
-
-                        string saveFileStream = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", filename);
-
-                        using (FileStream fileStream = new FileStream(saveFileStream, FileMode.Create))
-                        {
-                            await show.FormFile.CopyToAsync(fileStream);
-                        }
-                        if(!string.IsNullOrEmpty(existingShow.Image))
-                        {
-                            string oldImagePath = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot","assets",existingShow.Image);
-                            if (System.IO.File.Exists(oldImagePath) && existingShow.Image != "ShakesPlaceholder.png")
-                            {
-                                System.IO.File.Delete(oldImagePath);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        show.Image = existingShow.Image;
-                    }
-
-                        _context.Update(show);
+                    _context.Update(show);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
