@@ -35,8 +35,10 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication(); //THIS HAS TO GO ABOVE AUTHORIZATION!! THE ORDER MATTERS!!
+
 app.UseAuthorization();
-app.UseAuthentication();
+
 
 app.MapStaticAssets();
 
