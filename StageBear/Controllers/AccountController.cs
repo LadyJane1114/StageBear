@@ -7,6 +7,15 @@ namespace StageBear.Controllers
 {
     public class AccountController : Controller
     {
+
+        private readonly IConfiguration _configuration;
+
+        public AccountController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
+
         // GET: /Account/Login
         public IActionResult Login()
         {
@@ -20,8 +29,13 @@ namespace StageBear.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(string Username, string Password)
         {
+
+
+            string storedUsername = _configuration["username"];
+            string storedPassword = _configuration["password"];
+
             // validated username and password
-            if (Username == "admin" && Password == "admin")
+            if (Username == storedUsername && Password == storedPassword)
             {
                 // Create a list of claims identifying the user
                 var claims = new List<Claim>

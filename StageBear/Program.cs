@@ -2,8 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using StageBear.Data;
+
+
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<StageBearContext>(options =>
+string username = builder.Configuration["username"];
+string password = builder.Configuration["password"];
+
+builder.Services.AddDbContext<StageBearContext>(
+    options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("StageBearContext") ?? throw new InvalidOperationException("Connection string 'StageBearContext' not found.")));
 
 // Add services to the container.
@@ -23,6 +29,11 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 
 var app = builder.Build();
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Configuration.AddUserSecrets<Program>();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
