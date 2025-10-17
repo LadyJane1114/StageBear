@@ -79,7 +79,17 @@ namespace StageBear.Controllers
 
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            return RedirectToAction("Login","Account"); //redirect to /Account/Login
+            return RedirectToAction("Goodbye","Account"); //redirect to /Account/Goodbye
+        }
+
+        public IActionResult Goodbye()
+        {
+            return View();
+        }
+
+        public IActionResult ReturnToLogin()
+        {
+            return RedirectToAction("Login", "Account");
         }
     }
 }

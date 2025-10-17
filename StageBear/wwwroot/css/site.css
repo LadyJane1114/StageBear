@@ -79,6 +79,26 @@ html {
     // powder pink background
         //bi pink shadow
 }
+#LogInOut {
+    background-color: #d990b6;
+    border-radius: 17px;
+    box-shadow: 1px 1px 2px #d70170;
+    // powder pink background //bi pink shadow
+}
+
+    #LogInOut:hover {
+        background-color: #d990b6;
+        border-radius: 17px;
+        box-shadow: 1px 1px 2px #d70170;
+        font-weight: bold;
+        // powder pink background //bi pink shadow
+    }
+
+#userGreeting {
+    background-color: #d990b6d5;
+    border-radius: 17px;
+}
+
 
 
 body {
