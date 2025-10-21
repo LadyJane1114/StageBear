@@ -5,8 +5,8 @@ using StageBear.Data;
 
 
 var builder = WebApplication.CreateBuilder(args);
-string username = builder.Configuration["username"];
-string password = builder.Configuration["password"];
+string username = builder.Configuration["sb_username"];
+string password = builder.Configuration["sb_password"];
 
 builder.Services.AddDbContext<StageBearContext>(
     options =>
@@ -27,13 +27,14 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     });
 
 
-
-var app = builder.Build();
-
 if (builder.Environment.IsDevelopment())
 {
     builder.Configuration.AddUserSecrets<Program>();
 }
+
+
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

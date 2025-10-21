@@ -29,13 +29,8 @@ namespace StageBear.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(string Username, string Password)
         {
-
-
-            string storedUsername = _configuration["username"];
-            string storedPassword = _configuration["password"];
-
             // validated username and password
-            if (Username == storedUsername && Password == storedPassword)
+            if (Username == _configuration["sb_username"] && Password == _configuration["sb_password"])
             {
                 // Create a list of claims identifying the user
                 var claims = new List<Claim>
