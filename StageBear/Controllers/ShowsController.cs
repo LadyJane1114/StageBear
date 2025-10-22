@@ -27,9 +27,9 @@ namespace StageBear.Controllers
         // GET: Shows/Create
         public IActionResult Create()
         {
-            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryTitle");
-            ViewData["OwnerID"] = new SelectList(_context.Set<Owner>(), "OwnerId", "FullName");
-            ViewData["VenueID"] = new SelectList(_context.Set<Venue>(), "VenueId", "VenueName");
+            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryID", "CategoryTitle");
+            ViewData["OwnerID"] = new SelectList(_context.Set<Owner>(), "OwnerID", "FullName");
+            ViewData["VenueID"] = new SelectList(_context.Set<Venue>(), "VenueID", "VenueName");
             return View();
         }
 
@@ -66,9 +66,9 @@ namespace StageBear.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index","Home");
             }
-            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryTitle", show.CategoryID);
-            ViewData["OwnerID"] = new SelectList(_context.Set<Owner>(), "OwnerId", "FullName", show.OwnerID);
-            ViewData["VenueID"] = new SelectList(_context.Set<Venue>(), "VenueId", "VenueName", show.VenueID);
+            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryID", "CategoryTitle", show.CategoryID);
+            ViewData["OwnerID"] = new SelectList(_context.Set<Owner>(), "OwnerID", "FullName", show.OwnerID);
+            ViewData["VenueID"] = new SelectList(_context.Set<Venue>(), "VenueID", "VenueName", show.VenueID);
             return View(show);
         }
 
@@ -85,9 +85,9 @@ namespace StageBear.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryTitle", show.CategoryID);
-            ViewData["OwnerID"] = new SelectList(_context.Set<Owner>(), "OwnerId", "FullName", show.OwnerID);
-            ViewData["VenueID"] = new SelectList(_context.Set<Venue>(), "VenueId", "VenueName", show.VenueID);
+            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryID", "CategoryTitle", show.CategoryID);
+            ViewData["OwnerID"] = new SelectList(_context.Set<Owner>(), "OwnerID", "FullName", show.OwnerID);
+            ViewData["VenueID"] = new SelectList(_context.Set<Venue>(), "VenueID", "VenueName", show.VenueID);
             return View(show);
         }
 
@@ -158,9 +158,9 @@ namespace StageBear.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryTitle", show.CategoryID);
-            ViewData["OwnerID"] = new SelectList(_context.Set<Owner>(), "OwnerId", "FullName", show.OwnerID);
-            ViewData["VenueID"] = new SelectList(_context.Set<Venue>(), "VenueId", "VenueName", show.VenueID);
+            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryID", "CategoryTitle", show.CategoryID);
+            ViewData["OwnerID"] = new SelectList(_context.Set<Owner>(), "OwnerID", "FullName", show.OwnerID);
+            ViewData["VenueID"] = new SelectList(_context.Set<Venue>(), "VenueID", "VenueName", show.VenueID);
             return View(show);
         }
 
