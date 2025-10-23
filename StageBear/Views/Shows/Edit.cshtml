@@ -52,6 +52,17 @@
                 <select asp-for="OwnerID" class="form-control" asp-items="ViewBag.OwnerID"></select>
                 <span asp-validation-for="OwnerID" class="text-danger"></span>
             </div>
+            
+            <div class="mb-3">
+                <label asp-for="FormFile" class="form-label"></label>
+                <input asp-for="FormFile" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+
+            <div>
+                <img src="~/assets/@Model.Image" class="thumbnail" style="padding:10px; border: dashed 1px" />
+            </div>
+
             <div class="mb-3">
                 <input type="submit" value="Save" class="btn" />
             </div>
