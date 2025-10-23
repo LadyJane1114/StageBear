@@ -54,13 +54,13 @@
             </div>
             
             <div class="mb-3">
-                <label asp-for="FormFile" class="form-label"></label>
-                <input asp-for="FormFile" class="form-control" />
+                <label asp-for="Image" class="form-label"></label>
+                <input asp-for="Image" class="form-control" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
 
             <div>
-                <img src="~/assets/@Model.Image" class="thumbnail" style="padding:10px; border: dashed 1px" />
+                <img src="@Model.Image" class="thumbnail" style="padding:10px; border: dashed 1px" />
             </div>
 
             <div class="mb-3">
