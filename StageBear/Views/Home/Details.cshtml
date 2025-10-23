@@ -9,7 +9,10 @@
 <div>
     <hr />
     <div class="w-100">
-        <img src="/assets/@Model.Image" class="w-20 img-fluid" />
+        @if (!String.IsNullOrEmpty(Model.Image))
+        {
+            <img src="@Model.Image" class="img-fluid w-50" style="padding-bottom:10px" />
+        }
     </div>
     <dl class="row">
         <dt class = "col-sm-2">
@@ -49,7 +52,10 @@
     <br/>
     <p class="dateRecorded"><span style="font-weight:bold">Show Recorded:</span> @Model.DateRecorded.ToString("dd MMM, yyyy : hh:mm tt")</p>
 </div>
+
+<div style="padding-bottom:10px">
+    <a asp-controller="Shows" asp-action="Edit" asp-route-id="@Model?.ShowID" class="btn">Edit Show</a>
+</div>
 <div>
-    <a asp-controller="Shows" asp-action="Edit" asp-route-id="@Model?.ShowID">Edit</a> |
     <a asp-action="Index">Back to Shows List</a>
 </div>

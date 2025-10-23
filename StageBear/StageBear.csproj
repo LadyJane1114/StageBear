@@ -4,13 +4,15 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>898f8905-049a-497f-b6fb-2866a46cbfa2</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\assets\" />
+    <Folder Include="wwwroot\shakes\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.26.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>

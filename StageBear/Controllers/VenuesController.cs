@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StageBear.Data;
 using StageBear.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace StageBear.Controllers
 {
+    [Authorize]
     public class VenuesController : Controller
     {
         private readonly StageBearContext _context;
@@ -49,7 +51,7 @@ namespace StageBear.Controllers
             }
 
             var venue = await _context.Venue
-                .FirstOrDefaultAsync(m => m.VenueId == id);
+                .FirstOrDefaultAsync(m => m.VenueID == id);
             if (venue == null)
             {
                 return NotFound();
@@ -69,7 +71,7 @@ namespace StageBear.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("VenueId,VenueName,StreetAddress,City,Region,PostCode,Phone,VenueNotes")] Venue venue)
+        public async Task<IActionResult> Create([Bind("VenueID,VenueName,StreetAddress,City,Region,PostCode,Phone,VenueNotes")] Venue venue)
         {
             if (ModelState.IsValid)
             {
@@ -101,9 +103,9 @@ namespace StageBear.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("VenueId,VenueName,StreetAddress,City,Region,PostCode,Phone,VenueNotes")] Venue venue)
+        public async Task<IActionResult> Edit(int id, [Bind("VenueID,VenueName,StreetAddress,City,Region,PostCode,Phone,VenueNotes")] Venue venue)
         {
-            if (id != venue.VenueId)
+            if (id != venue.VenueID)
             {
                 return NotFound();
             }
@@ -117,7 +119,7 @@ namespace StageBear.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VenueExists(venue.VenueId))
+                    if (!VenueExists(venue.VenueID))
                     {
                         return NotFound();
                     }
@@ -140,7 +142,7 @@ namespace StageBear.Controllers
             }
 
             var venue = await _context.Venue
-                .FirstOrDefaultAsync(m => m.VenueId == id);
+                .FirstOrDefaultAsync(m => m.VenueID == id);
             if (venue == null)
             {
                 return NotFound();
@@ -166,7 +168,7 @@ namespace StageBear.Controllers
 
         private bool VenueExists(int id)
         {
-            return _context.Venue.Any(e => e.VenueId == id);
+            return _context.Venue.Any(e => e.VenueID == id);
         }
     }
 }

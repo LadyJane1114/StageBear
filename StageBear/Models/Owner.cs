@@ -5,7 +5,7 @@ namespace StageBear.Models
     public class Owner
     {
         [Display(Name = "ID")]
-        public int OwnerId { get; set; }
+        public int OwnerID { get; set; }
 
         [Display(Name = "First Name")]
         public string FName { get; set; } = string.Empty;

@@ -5,10 +5,9 @@
 }
 <h1>Stage Bear</h1>
 
-
-
-
 <h3>What's on stage!</h3>
+
+
 <p>
     <a asp-controller="Shows" asp-action="Create" class="btn">Add New Show</a>
 </p>
@@ -30,12 +29,10 @@
     </div>
 </form>
 
-<table class="table">
+<table class="table" >
     <thead>
         <tr>
-            <th>
-                Thumbnail
-            </th>
+            <th></th>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
@@ -54,9 +51,12 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                <img src="/assets/@item.Image" class="w-25 img-fluid" />
-            </td>
+                <td>
+                @if (!String.IsNullOrEmpty(item.Image))
+                {
+                    <img src="@item.Image" class="thumbnail" alt="@item.Title" />
+                }
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>

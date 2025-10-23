@@ -6,7 +6,7 @@ namespace StageBear.Models
     {
         [Display(Name = "Category ID")]
         //primary key
-        public int CategoryId { get; set; }
+        public int CategoryID { get; set; }
 
         [Display(Name = "Category")]
         public string CategoryTitle { get; set; } = string.Empty;

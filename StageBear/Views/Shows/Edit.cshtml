@@ -9,9 +9,10 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ShowID" />
+
             <div class="mb-3">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
@@ -27,16 +28,7 @@
                 <input asp-for="Scheduled" class="form-control" />
                 <span asp-validation-for="Scheduled" class="text-danger"></span>
             </div>
-            <div class="mb-3">
-                <label asp-for="DateRecorded" class="control-label"></label>
-                <input asp-for="DateRecorded" class="form-control" />
-                <span asp-validation-for="DateRecorded" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
+
             <div class="mb-3">
                 <label asp-for="CategoryID" class="control-label"></label>
                 <select asp-for="CategoryID" class="form-control" asp-items="ViewBag.CategoryID"></select>
@@ -52,17 +44,6 @@
                 <select asp-for="OwnerID" class="form-control" asp-items="ViewBag.OwnerID"></select>
                 <span asp-validation-for="OwnerID" class="text-danger"></span>
             </div>
-            
-            <div class="mb-3">
-                <label asp-for="Image" class="form-label"></label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
-
-            <div>
-                <img src="@Model.Image" class="thumbnail" style="padding:10px; border: dashed 1px" />
-            </div>
-
             <div class="mb-3">
                 <input type="submit" value="Save" class="btn" />
             </div>
