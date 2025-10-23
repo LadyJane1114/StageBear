@@ -50,9 +50,14 @@
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
 
-            <div>
+            @* <div>
                 <img src="@Model.Image" class="thumbnail" style="padding:10px; border: dashed 1px" />
+            </div> *@
+            <div class="mb-3">
+                <img id="previewThumb" src="@(string.IsNullOrEmpty(Model.Image) ? "#" : Model.Image)" class="thumbnail" alt="preview thumbnail" style="@(string.IsNullOrEmpty(Model.Image) ? "display:none;" : "display:block;") padding:10px; border: dashed 1px"
             </div>
+
+
             <div class="mb-3">
                 <input type="submit" value="Save" class="btn" />
             </div>
