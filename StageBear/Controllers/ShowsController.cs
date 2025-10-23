@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,11 +18,20 @@ namespace StageBear.Controllers
     [Authorize]
     public class ShowsController : Controller
     {
+        private readonly IConfiguration _config;
         private readonly StageBearContext _context;
+        private readonly BlobContainerClient _containerClient;
 
-        public ShowsController(StageBearContext context)
+        public ShowsController(IConfiguration configuration, StageBearContext context)
         {
             _context = context;
+            _config = configuration;
+
+
+            //set up blob container client
+            var connectionString = _config.GetConnectionString("AzureStorage");
+            var containerName = "stgbr-poster-uploads";
+            _containerClient = new BlobContainerClient(connectionString, containerName);
         }
 
 
@@ -47,19 +58,38 @@ namespace StageBear.Controllers
             {
                 if (show.FormFile != null)
                 {
-                    string filename = show.FormFile.FileName;
-                    show.Image = filename;
+                    //string filename = show.FormFile.FileName;
+                    //show.Image = filename;
 
-                    string saveFileStream = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot","assets",filename);
+                    //string saveFileStream = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot","assets",filename);
 
-                    using (FileStream fileStream = new FileStream(saveFileStream, FileMode.Create))
+                    //using (FileStream fileStream = new FileStream(saveFileStream, FileMode.Create))
+                    //{
+                    //    await show.FormFile.CopyToAsync(fileStream);
+                    //} THE OLD WAY
+
+
+
+                    // THE NEW WAY
+                    // Upload file to azure blob storage
+
+                    //store the filename in fileUpload
+                    IFormFile fileUpload = show.FormFile;
+
+                    //create a unique filename for the blob
+                    string blobName = Guid.NewGuid().ToString() + "_" + fileUpload.FileName;
+                    var blobClient = _containerClient.GetBlobClient(blobName);
+
+                    using (var stream = fileUpload.OpenReadStream())
                     {
-                        await show.FormFile.CopyToAsync(fileStream);
+                        await blobClient.UploadAsync(stream, new BlobHttpHeaders { ContentType = fileUpload.ContentType });
                     }
+                    string blobURL = blobClient.Uri.ToString();
+                    show.Image = blobURL;
                 }
                 else
                 {
-                    show.Image = "ShakesPlaceholder.png";
+                    show.Image = "/shakes/ShakesPlaceholder.png";
                 }
 
                     _context.Add(show);

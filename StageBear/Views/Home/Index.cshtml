@@ -32,9 +32,7 @@
 <table class="table" >
     <thead>
         <tr>
-            <th>
-                Thumbnail
-            </th>
+            <th></th>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
@@ -54,11 +52,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @if (!String.IsNullOrEmpty(item.Image))
-                 {
-                    <img src="/assets/@item.Image" class="thumbnail" />
-                 } 
-                    
+                <img src="@item.Image" class="thumbnail" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
