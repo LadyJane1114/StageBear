@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StageBear.Data;
 using StageBear.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace StageBear.Controllers
 {
+    [Authorize]
     public class CategoriesController : Controller
     {
         private readonly StageBearContext _context;
@@ -47,7 +49,7 @@ namespace StageBear.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,CategoryTitle")] Category category)
+        public async Task<IActionResult> Create([Bind("CategoryID,CategoryTitle")] Category category)
         {
             if (ModelState.IsValid)
             {
@@ -79,9 +81,9 @@ namespace StageBear.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryTitle")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryID,CategoryTitle")] Category category)
         {
-            if (id != category.CategoryId)
+            if (id != category.CategoryID)
             {
                 return NotFound();
             }
@@ -95,7 +97,7 @@ namespace StageBear.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.CategoryId))
+                    if (!CategoryExists(category.CategoryID))
                     {
                         return NotFound();
                     }
@@ -118,7 +120,7 @@ namespace StageBear.Controllers
             }
 
             var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
+                .FirstOrDefaultAsync(m => m.CategoryID == id);
             if (category == null)
             {
                 return NotFound();
@@ -144,7 +146,7 @@ namespace StageBear.Controllers
 
         private bool CategoryExists(int id)
         {
-            return _context.Category.Any(e => e.CategoryId == id);
+            return _context.Category.Any(e => e.CategoryID == id);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace StageBear.Models
     public class Venue
     {
         [Display(Name = "ID")]
-        public int VenueId { get; set; }
+        public int VenueID { get; set; }
 
         [Display(Name = "Venue")]
         public string VenueName { get; set; } = string.Empty;

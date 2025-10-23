@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StageBear.Data;
 using StageBear.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace StageBear.Controllers
 {
+    [Authorize]
     public class OwnersController : Controller
     {
         private readonly StageBearContext _context;
@@ -46,7 +48,7 @@ namespace StageBear.Controllers
             }
 
             var owner = await _context.Owner
-                .FirstOrDefaultAsync(m => m.OwnerId == id);
+                .FirstOrDefaultAsync(m => m.OwnerID == id);
             if (owner == null)
             {
                 return NotFound();
@@ -66,7 +68,7 @@ namespace StageBear.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OwnerId,FName,LName,Pronouns,Organization,Phone,Email,OwnerNotes")] Owner owner)
+        public async Task<IActionResult> Create([Bind("OwnerID,FName,LName,Pronouns,Organization,Phone,Email,OwnerNotes")] Owner owner)
         {
             if (ModelState.IsValid)
             {
@@ -98,9 +100,9 @@ namespace StageBear.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OwnerId,FName,LName,Pronouns,Organization,Phone,Email,OwnerNotes")] Owner owner)
+        public async Task<IActionResult> Edit(int id, [Bind("OwnerID,FName,LName,Pronouns,Organization,Phone,Email,OwnerNotes")] Owner owner)
         {
-            if (id != owner.OwnerId)
+            if (id != owner.OwnerID)
             {
                 return NotFound();
             }
@@ -114,7 +116,7 @@ namespace StageBear.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!OwnerExists(owner.OwnerId))
+                    if (!OwnerExists(owner.OwnerID))
                     {
                         return NotFound();
                     }
@@ -137,7 +139,7 @@ namespace StageBear.Controllers
             }
 
             var owner = await _context.Owner
-                .FirstOrDefaultAsync(m => m.OwnerId == id);
+                .FirstOrDefaultAsync(m => m.OwnerID == id);
             if (owner == null)
             {
                 return NotFound();
@@ -163,7 +165,7 @@ namespace StageBear.Controllers
 
         private bool OwnerExists(int id)
         {
-            return _context.Owner.Any(e => e.OwnerId == id);
+            return _context.Owner.Any(e => e.OwnerID == id);
         }
     }
 }

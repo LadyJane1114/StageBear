@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.Scheduled)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Scheduled)
+            @Model.Scheduled.ToString("dd MMM, yyyy : hh:mm tt")
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Venue)
@@ -36,7 +36,7 @@
             @Html.DisplayFor(model => model.Owner.FullName)
         </dd>
         <div class="w-100">
-            <img src="/assets/@Model.Image" class="w-20 img-fluid" />
+            <img src="/assets/@Model.Image" class="thumbnail" />
         </div>
     </dl>
     

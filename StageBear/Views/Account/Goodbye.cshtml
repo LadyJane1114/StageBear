@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Come Back Soon!";
+}
+<h1 class="text-center">Come Back Soon!</h1>
+
+<img src="/shakes/ShakesLogo.png" class="img-fluid mx-auto d-block" alt="Shakes the Stage Bear"/>
+
+<p class="text-end fst-italic">User has successfully exited, pursued by bear...</p>
+
+<form asp-action="ReturnToLogin">
+    <p>
+        <a asp-controller="Account" asp-action="Login" class="btn">Login</a>
+    </p>
+</form>
