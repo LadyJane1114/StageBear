@@ -82,9 +82,15 @@ namespace StageBear.Controllers
 
                     using (var stream = fileUpload.OpenReadStream())
                     {
-                        await blobClient.UploadAsync(stream, new BlobHttpHeaders { ContentType = fileUpload.ContentType });
+                        await blobClient.UploadAsync(stream, new BlobUploadOptions
+                        {
+                            HttpHeaders = new BlobHttpHeaders
+                            {
+                                ContentType = fileUpload.ContentType
+                            }
+                        });
                     }
-                    string blobURL = blobClient.Uri.ToString();
+                    string blobURL = blobClient.Uri.AbsoluteUri;
                     show.Image = blobURL;
                 }
                 else
@@ -146,26 +152,35 @@ namespace StageBear.Controllers
             {
                 if (show.FormFile != null)
                 {
-                    string filename = show.FormFile.FileName;
-                    show.Image = filename;
+                    // Create unique name and upload to Azure
+                    string blobName = Guid.NewGuid().ToString() + "_" + show.FormFile.FileName;
+                    var blobClient = _containerClient.GetBlobClient(blobName);
 
-                    string saveFileStream = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", filename);
-
-                    using (FileStream fileStream = new FileStream(saveFileStream, FileMode.Create))
+                    using (var stream = show.FormFile.OpenReadStream())
                     {
-                        await show.FormFile.CopyToAsync(fileStream);
-                    }
-                    if (!string.IsNullOrEmpty(existingShow.Image))
-                    {
-                        string oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", existingShow.Image);
-                        if (System.IO.File.Exists(oldImagePath) && existingShow.Image != "ShakesPlaceholder.png")
+                        await blobClient.UploadAsync(stream, new BlobUploadOptions
                         {
-                            System.IO.File.Delete(oldImagePath);
-                        }
+                            HttpHeaders = new BlobHttpHeaders
+                            {
+                                ContentType = show.FormFile.ContentType
+                            }
+                        });
                     }
+
+                    if (!string.IsNullOrEmpty(existingShow.Image) && existingShow.Image != "/shakes/ShakesPlaceholder.png")
+                    {
+                            var oldBlobUri = new Uri(existingShow.Image);
+                            var oldBlobName = Path.GetFileName(oldBlobUri.LocalPath);
+                            var oldBlobClient = _containerClient.GetBlobClient(oldBlobName);
+                            await oldBlobClient.DeleteIfExistsAsync();
+                    }
+
+                    // Save the new Azure blob URL
+                    show.Image = blobClient.Uri.AbsoluteUri;
                 }
                 else
                 {
+                    // No new image → keep existing one
                     show.Image = existingShow.Image;
                 }
 
@@ -225,13 +240,14 @@ namespace StageBear.Controllers
             {
                 _context.Show.Remove(show);
             }
-            if (!string.IsNullOrEmpty(show.Image))
+            if (!string.IsNullOrEmpty(show.Image) && show.Image != "/shakes/ShakesPlaceholder.png")
             {
-                string DeleteImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", show.Image);
-                if (System.IO.File.Exists(DeleteImagePath) && show.Image != "ShakesPlaceholder.png")
-                {
-                    System.IO.File.Delete(DeleteImagePath);
-                }
+                var blobUri = new Uri(show.Image);
+                var blobName = Path.GetFileName(blobUri.LocalPath);
+
+                var blobClient = _containerClient.GetBlobClient(blobName);
+
+                await blobClient.DeleteIfExistsAsync();
             }
 
             await _context.SaveChangesAsync();

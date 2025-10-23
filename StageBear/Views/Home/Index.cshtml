@@ -51,9 +51,12 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                <img src="@item.Image" class="thumbnail" />
-            </td>
+                <td>
+                @if (!String.IsNullOrEmpty(item.Image))
+                {
+                    <img src="@item.Image" class="thumbnail" alt="@item.Title" />
+                }
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
