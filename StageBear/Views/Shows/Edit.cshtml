@@ -46,15 +46,26 @@
             </div>
             <div class="mb-3">
                 <label asp-for="FormFile" class="form-label"></label>
-                <input asp-for="FormFile" class="form-control" />
+                <input asp-for="FormFile" class="form-control" onchange="showNewPreview(event)" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
 
-            @* <div>
-                <img src="@Model.Image" class="thumbnail" style="padding:10px; border: dashed 1px" />
-            </div> *@
-            <div class="mb-3">
-                <img id="previewThumb" src="@(string.IsNullOrEmpty(Model.Image) ? "#" : Model.Image)" class="thumbnail" alt="preview thumbnail" style="@(string.IsNullOrEmpty(Model.Image) ? "display:none;" : "display:block;") + " padding:10px; border: dashed 1px;"" />
+            
+            <div class="mb-3 d-flex gap-3">
+                <div>
+                    <p>Current Poster:</p>
+                    <img id="currentPreview" 
+                        src="@(string.IsNullOrEmpty(Model.Image) ? "#" : Model.Image)" 
+                        class="thumbnail" alt="Current Poster"
+                         style="max-width: 150px; border: dashed 1px #999; padding: 5px; @(string.IsNullOrEmpty(Model.Image) ? "display:none;" : "display:block;")" />
+                </div>
+                <div id="newPreviewContainer" style="display:none">
+                    <p>New Poster:</p>
+                    <img id="newPreview"
+                        src="@(string.IsNullOrEmpty(Model.Image) ? "#" : Model.Image)" 
+                        class="thumbnail" alt="New Poster"
+                        style="max-width: 150px; border: dashed 1px #999; padding: 5px" />
+                </div>
             </div>
 
 
@@ -73,18 +84,23 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 <script>
-    function previewImage(event) {
+    function showNewPreview(event) {
         const input = event.target;
-        const preview = document.getElementById('previewThumb');
+        const newPreviewContainer = document.getElementById('newPreviewContainer');
+        const newPreview = document.getElementById('newPreview');
 
-        if(input.files && input.files[0]) {
+        if (input.files && input.files[0]) {
             const reader = new FileReader();
 
             reader.onload = function (e) {
-                preview.src = e.target.result;
-                preview.style.display = 'block';
+                newPreview.src = e.target.result;
+                newPreviewContainer.style.display = 'block';
             };
+
             reader.readAsDataURL(input.files[0]);
+        } else {
+            newPreview.src = '#';
+            newPreviewContainer.style.display = 'none';
         }
     }
 </script>
