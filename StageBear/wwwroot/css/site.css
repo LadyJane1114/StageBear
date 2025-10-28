@@ -95,10 +95,10 @@ html {
     }
 
 #userGreeting {
-    background-color: #d990b6d5;
-    border-radius: 17px;
+    color: #e6acca;
+    font-size: larger;
+    font-family: "Love Ya Like A Sister", cursive;
 }
-
 
 
 body {

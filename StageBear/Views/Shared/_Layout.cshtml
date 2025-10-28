@@ -44,11 +44,11 @@
                         <ul class="navbar-nav">
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <li id="userGreeting" class="navbar-text pe-2 ps-5 me-2">
+                                <li id="userGreeting" class="navbar-text ps-2 pe-2 me-2">
                                     Hello, @User.Identity.Name
                                 </li>
                                 <li>
-                                    <a id="LogInOut" class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                                    <a id="LogInOut" class="nav-link text-dark ps-2" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
                                 </li>
                             }
                             else
