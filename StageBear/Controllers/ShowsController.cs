@@ -175,12 +175,10 @@ namespace StageBear.Controllers
                             await oldBlobClient.DeleteIfExistsAsync();
                     }
 
-                    // Save the new Azure blob URL
                     show.Image = blobClient.Uri.AbsoluteUri;
                 }
                 else
                 {
-                    // No new image → keep existing one
                     show.Image = existingShow.Image;
                 }
 
