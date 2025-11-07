@@ -28,7 +28,8 @@ namespace StageBear.Controllers
 
 
             var stageBearContext = _context.Venue
-                .OrderBy(s=>s.Region)
+                .OrderBy(s=>s.Country)
+                .ThenBy(s=>s.Region)
                 .ThenBy(s => s.City)
                 .ThenBy(s => s.VenueName)
                 .AsQueryable();
@@ -36,7 +37,7 @@ namespace StageBear.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 stageBearContext = stageBearContext
-                    .Where(s => s.VenueName.ToUpper().Contains(searchString) || s.City.ToUpper().Contains(searchString) || s.Region.ToUpper().Contains(searchString));
+                    .Where(s => s.VenueName.ToUpper().Contains(searchString) || s.City.ToUpper().Contains(searchString) || s.Region.ToUpper().Contains(searchString) || s.Country.ToUpper().Contains(searchString));
             }
 
             return View(await stageBearContext.ToListAsync());
