@@ -17,7 +17,7 @@ namespace StageBear.Models
         public string City { get; set; } = string.Empty;
 
         [Display(Name = "Region")]
-        public string Region { get; set; } = string.Empty;
+        public string? Region { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
 
         [Display(Name = "Post Code")]
@@ -28,7 +28,7 @@ namespace StageBear.Models
 
         [Display(Name = "Address")]
         public string FullAddress => $"{StreetAddress} " +
-                                        $"{City}, {Region} " +
+                                        $"{City}, {Region} {Country}" +
                                         $"{PostCode}";
         [Display(Name = "Notes")]
         public string? VenueNotes {  get; set; }

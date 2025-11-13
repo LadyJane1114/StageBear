@@ -35,6 +35,9 @@ namespace StageBear.Models
         //Navigation property
         public Owner? Owner { get; set; }
 
+        //Navigation property
+        public List<Purchase>? Purchases { get; set; }
+
         [NotMapped]
         [Display(Name = "Poster")]
         public IFormFile? FormFile { get; set; }
