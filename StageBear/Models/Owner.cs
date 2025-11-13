@@ -10,7 +10,7 @@ namespace StageBear.Models
         [Display(Name = "First Name")]
         public string FName { get; set; } = string.Empty;
 
-        [Display(Name = "Last Name")]
+        [Display(Name = "Surname")]
         public string LName { get; set; } = string.Empty ;
 
         public string Pronouns { get; set; } = string.Empty ;
