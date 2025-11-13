@@ -1,4 +1,6 @@
-﻿namespace StageBear.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace StageBear.Models
 {
     public class Purchase
     {
@@ -24,11 +26,18 @@
         public string ClientEmail { get; set; } = string.Empty;
         public string? ClientPhone { get; set; } = string.Empty;
 
-
-        public int CardNum { get; set; }
-        public int CardExpMon { get; set; }
-        public int CardExpYear { get; set; }
+        [Required]
+        [MaxLength(16, ErrorMessage = "Card number cannot exceed 16 characters.")]
+        public string CardNum { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(2, ErrorMessage = "Card number cannot exceed 2 characters.")]
+        public string CardExpMon { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(2, ErrorMessage = "Card number cannot exceed 2 characters.")]
+        public string CardExpYear { get; set; } = string.Empty;
         public string CardExpiry => $"{CardExpMon} / {CardExpYear}";
+        [Required]
+        [MaxLength(3, ErrorMessage = "Card number cannot exceed 3 characters.")]
         public int CardSecCode { get; set; }
 
         //foreign key
