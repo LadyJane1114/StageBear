@@ -22,7 +22,7 @@
                                         $"{ClientPostCode}";
 
         public string ClientEmail { get; set; } = string.Empty;
-        public string ClientPhone { get; set; } = string.Empty;
+        public string? ClientPhone { get; set; } = string.Empty;
 
 
         public int CardNum { get; set; }
