@@ -67,7 +67,7 @@
                     @Html.DisplayFor(modelItem => item.TicketsPurchased)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DatePurchased.ToString("dd MMM, yyyy : hh:mm tt"))
+                    @item.DatePurchased.ToString("dd MMM, yyyy : hh:mm tt")
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ClientFullName)
@@ -82,7 +82,9 @@
                     @Html.DisplayFor(modelItem => item.ClientPhone)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CardNum)
+                    @(item.CardNum.Length >= 4
+                        ? "**** **** **** " + item.CardNum.Substring(item.CardNum.Length - 4)
+                        : item.CardNum)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CardExpiry)
