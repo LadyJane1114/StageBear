@@ -61,6 +61,20 @@ namespace StageBear.Controllers
             return View(show);
         }
 
+        //GET: Shows/Purchases/
+        public async Task<IActionResult> Purchases(string searchString)
+        {
+            var stageBearContext = _context.Purchase
+                .AsQueryable();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                stageBearContext = stageBearContext.Where(s => s.ClientFullName.ToUpper().Contains(searchString));
+            }
+
+            return View(await stageBearContext.ToListAsync());
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

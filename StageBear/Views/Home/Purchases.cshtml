@@ -1,0 +1,93 @@
+﻿@model IEnumerable<StageBear.Models.Purchase>
+
+@{
+    ViewData["Title"] = "Ticket Information";
+}
+
+<h1>Ticket Information</h1>
+@* <h3>@Model.FirstOrDefault()?.Show?.Title ?? "Unknown Show"</h3> *@
+
+<form>
+    <div class="row g-2 align-items-center">
+        <div class="col-auto m-2">
+            <label for="searchBox" class="col-form-label">Search Purchases by Name: </label>
+        </div>
+        <div class="col-auto m-2">
+            <input type="text" id="searchbox" name="searchString" class="form-control" value="@(ViewData["CurrentFilter"] as string)" />
+        </div>
+        <div class="col-auto m-2">
+            <input type="submit" value="Search" class="btn " />
+        </div>
+        <div class="col-auto m-2">
+            <a asp-action="Index">Back to Shows List</a>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor((Purchase p) => p.PurchaseID)
+            </th>
+            <th>
+                @Html.DisplayNameFor((Purchase p) => p.TicketsPurchased)
+            </th>
+            <th>
+                @Html.DisplayNameFor((Purchase p) => p.DatePurchased)
+            </th>
+            <th>
+                @Html.DisplayNameFor((Purchase p) => p.ClientFullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor((Purchase p) => p.FullAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor((Purchase p) => p.ClientEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor((Purchase p) => p.ClientPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor((Purchase p) => p.CardNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor((Purchase p) => p.CardExpiry)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketsPurchased)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatePurchased)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientFullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CardNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CardExpiry)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

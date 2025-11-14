@@ -18,5 +18,6 @@ namespace StageBear.Data
         public DbSet<StageBear.Models.Category> Category { get; set; } = default!;
         public DbSet<StageBear.Models.Venue> Venue { get; set; } = default!;
         public DbSet<StageBear.Models.Owner> Owner { get; set; } = default!;
+        public DbSet<StageBear.Models.Purchase> Purchase { get; set; } = default!;
     }
 }

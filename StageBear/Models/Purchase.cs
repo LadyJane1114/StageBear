@@ -13,7 +13,7 @@ namespace StageBear.Models
         public int TicketsPurchased { get; set; }
 
         [Display(Name = "Date of Transaction")]
-        public DateTime DatePurchaed { get; set; }
+        public DateTime DatePurchased { get; set; }
 
 
         [Display(Name = "Client First Name")]
