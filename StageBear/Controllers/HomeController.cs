@@ -52,6 +52,7 @@ namespace StageBear.Controllers
                 .Include(s => s.Category)
                 .Include(s => s.Owner)
                 .Include(s => s.Venue)
+                .Include(s => s.Purchases)
                 .FirstOrDefaultAsync(m => m.ShowID == id);
             if (show == null)
             {

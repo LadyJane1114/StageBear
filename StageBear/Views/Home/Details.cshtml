@@ -51,6 +51,7 @@
 <div>
     <br/>
     <p class="dateRecorded"><span style="font-weight:bold">Show Recorded:</span> @Model.DateRecorded.ToString("dd MMM, yyyy : hh:mm tt")</p>
+    <p class="dateRecorded"><span style="font-weight:bold">Tickets Sold: </span>@(Model.Purchases?.Sum(p => p.TicketsPurchased) ?? 0)</p>
 </div>
 
 <div style="padding-bottom:10px">
