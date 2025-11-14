@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<StageBear.Models.Purchase>
 
 @{
-    ViewData["Title"] = "Ticket Information";
+    ViewData["Title"] = "Ticket Sales Information";
 }
 
 <h1>Ticket Information</h1>
-@* <h3>@Model.FirstOrDefault()?.Show?.Title ?? "Unknown Show"</h3> *@
+<h3>@ViewData["ShowTitle"]</h3>
 
 <form>
     <div class="row g-2 align-items-center">
@@ -91,3 +91,8 @@
         }
     </tbody>
 </table>
+
+<div>
+    <a asp-controller="Home" asp-action="Details" asp-route-id="@ViewData["ShowID"]">Back to Show Details</a>
+    <a asp-action="Index"> Back to Full Shows List</a>
+</div>

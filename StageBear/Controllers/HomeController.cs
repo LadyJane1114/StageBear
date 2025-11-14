@@ -62,9 +62,10 @@ namespace StageBear.Controllers
         }
 
         //GET: Shows/Purchases/
-        public async Task<IActionResult> Purchases(string searchString)
+        public async Task<IActionResult> Purchases(int? id, string searchString)
         {
             var stageBearContext = _context.Purchase
+                .Include(p=> p.Show)
                 .AsQueryable();
 
             if (!String.IsNullOrEmpty(searchString))
@@ -72,8 +73,15 @@ namespace StageBear.Controllers
                 stageBearContext = stageBearContext.Where(s => s.ClientFullName.ToUpper().Contains(searchString));
             }
 
+            var show = await _context.Show.FindAsync(id);
+            ViewData["ShowTitle"] = show?.Title ?? "Unknown Show";
+            ViewData["ShowID"] = id;
+
             return View(await stageBearContext.ToListAsync());
+
         }
+
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

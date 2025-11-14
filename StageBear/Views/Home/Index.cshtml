@@ -70,9 +70,10 @@
                 @Html.DisplayFor(modelItem => item.Venue.VenueName)
             </td>
             <td>
-                <a asp-controller="Shows" asp-action="Edit" asp-route-id="@item.ShowID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ShowID">Details</a> |
-                <a asp-controller="Shows" asp-action="Delete" asp-route-id="@item.ShowID">Delete</a>
+                <a asp-controller="Home" asp-action="Purchases" asp-route-id="@item.ShowID">Ticket Sales Information</a> |
+                <a asp-controller="Shows" asp-action="Edit" asp-route-id="@item.ShowID">Edit Show</a> |
+                <a asp-controller="Shows" asp-action="Delete" asp-route-id="@item.ShowID">Delete Show</a>
             </td>
         </tr>
 }
