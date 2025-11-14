@@ -65,20 +65,22 @@ namespace StageBear.Controllers
         //GET: Shows/Purchases/
         public async Task<IActionResult> Purchases(int? id, string searchString)
         {
-            var stageBearContext = _context.Purchase
-                .Include(p=> p.Show)
-                .AsQueryable();
+            var purchasesQuery = _context.Purchase
+                                 .Include(p => p.Show)
+                                 .Where(p => p.ShowID == id);
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
-                stageBearContext = stageBearContext.Where(s => s.ClientFullName.ToUpper().Contains(searchString));
+                purchasesQuery = purchasesQuery.Where(p => p.ClientFullName.Contains(searchString));
             }
+
+            var purchases = await purchasesQuery.ToListAsync();
 
             var show = await _context.Show.FindAsync(id);
             ViewData["ShowTitle"] = show?.Title ?? "Unknown Show";
             ViewData["ShowID"] = id;
 
-            return View(await stageBearContext.ToListAsync());
+            return View(purchases);
 
         }
 
