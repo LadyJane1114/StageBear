@@ -82,12 +82,7 @@
                     @Html.DisplayFor(modelItem => item.ClientPhone)
                 </td>
                 <td>
-                    @(string.IsNullOrEmpty(item.CardNum)
-                        ? ""
-                        : item.CardNum.Length <= 4
-                        ? item.CardNum
-                        : "**** **** **** " + item.CardNum.Substring(item.CardNum.Length - 4)
-                    )
+                    @Html.DisplayFor(modelItem => item.CardNum)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CardExpiry)
